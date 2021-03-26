@@ -22,8 +22,8 @@ interface SkillTestDao {
     @Query("SELECT COUNT(*) FROM test")
     fun count(): Single<Int>
 
-    @Query("SELECT * FROM test WHERE id = :id")
-    fun findById(id: Int): Single<TestBD>
+    @Query("SELECT * FROM test WHERE idLocalDB = :idLocal")
+    fun findById(idLocal: Long): Single<TestBD>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsertWeather(vararg weather: WeatherBD): Completable
