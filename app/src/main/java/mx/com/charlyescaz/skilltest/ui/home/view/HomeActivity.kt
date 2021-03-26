@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import mx.com.charlyescaz.database.DBSkillTest
 import mx.com.charlyescaz.skilltest.R
+import mx.com.charlyescaz.skilltest.SkillTestApp
 import mx.com.charlyescaz.skilltest.databinding.ActivityHomeBinding
 import mx.com.charlyescaz.skilltest.ui.home.contract.HomeContract
 import mx.com.charlyescaz.skilltest.ui.home.data.HomeRepository
@@ -17,11 +18,13 @@ import mx.com.charlyescaz.skilltest.ui.home.view.fragments.MapsViewFragment
 import mx.com.charlyescaz.skilltest.ui.home.view.fragments.OtherFragment
 import mx.com.charlyescaz.skilltest.utils.Codes
 import mx.com.charlyescaz.web.api.APISkilltest
+import javax.inject.Inject
 
 class HomeActivity: AppCompatActivity(), HomeContract.View {
 
     private lateinit var vBind: ActivityHomeBinding
     private var currentFragmentTag = ""
+
 
     private val presenter: HomePresenter by lazy {
         HomePresenter(this, this, HomeRepository(APISkilltest, DBSkillTest.db.skillTestDao()))
