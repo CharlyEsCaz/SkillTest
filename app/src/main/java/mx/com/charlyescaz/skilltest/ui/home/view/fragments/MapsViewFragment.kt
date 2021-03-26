@@ -13,13 +13,13 @@ import mx.com.charlyescaz.database.DBSkillTest
 import mx.com.charlyescaz.skilltest.R
 import mx.com.charlyescaz.skilltest.databinding.FragmentMapBinding
 import mx.com.charlyescaz.skilltest.models.Test
+import mx.com.charlyescaz.skilltest.ui.home.contract.MapContract
 import mx.com.charlyescaz.skilltest.ui.home.data.MapsViewRepository
 import mx.com.charlyescaz.skilltest.ui.home.presenter.MapsViewPresenter
-import mx.com.charlyescaz.skilltest.ui.home.view.interfaces.MapsView
 import mx.com.charlyescaz.skilltest.utils.map.GMapHelper
 import mx.com.charlyescaz.skilltest.utils.map.MapInterface
 
-class MapsViewFragment: Fragment(), MapsView, MapInterface {
+class MapsViewFragment: Fragment(), MapContract.View, MapInterface {
 
     private lateinit var vBind: FragmentMapBinding
 

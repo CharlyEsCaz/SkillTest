@@ -7,8 +7,12 @@ import mx.com.charlyescaz.database.dao.SkillTestDao
 import mx.com.charlyescaz.database.models.TestBD
 import mx.com.charlyescaz.database.models.WeatherBD
 import mx.com.charlyescaz.web.api.APISkilltest
+import javax.inject.Inject
 
-class HomeRepository(private val api: APISkilltest, private val dao: SkillTestDao) {
+class HomeRepository(
+    private val api: APISkilltest,
+    private val dao: SkillTestDao
+    ) {
 
     fun getWeatherInformation(cb: (success: Boolean, data: String?) -> Unit) {
         api.getWeather("London,uk",

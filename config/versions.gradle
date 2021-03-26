@@ -31,6 +31,8 @@ versions.room = "2.2.6"
 versions.rx_java = "2.2.6"
 //Maps
 versions.maps = "17.0.0"
+//Dagger
+versions.dagger = "2.15"
 
 ext.versions = versions
 
@@ -77,6 +79,11 @@ def maps = [:]
 maps.location = "com.google.android.gms:play-services-location:$versions.maps"
 maps.maps = "com.google.android.gms:play-services-maps:$versions.maps"
 
+def dagger = [:]
+dagger.dagger = "com.google.dagger:dagger:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.processor = "com.google.dagger:dagger-android-processor:$versions.dagger"
+
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 deps.kotlin = kotlin
@@ -87,5 +94,6 @@ deps.utils = utils
 deps.room = room
 deps.rx = rx
 deps.maps = maps
+deps.dagger = dagger
 
 ext.deps = deps

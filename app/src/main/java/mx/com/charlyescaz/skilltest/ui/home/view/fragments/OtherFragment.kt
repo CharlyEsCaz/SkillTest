@@ -13,15 +13,12 @@ import mx.com.charlyescaz.database.DBSkillTest
 import mx.com.charlyescaz.skilltest.databinding.FragmentListBinding
 import mx.com.charlyescaz.skilltest.models.Test
 import mx.com.charlyescaz.skilltest.ui.details.view.OtherDetailsActivity
-import mx.com.charlyescaz.skilltest.ui.home.data.HomeRepository
+import mx.com.charlyescaz.skilltest.ui.home.contract.OtherContract
 import mx.com.charlyescaz.skilltest.ui.home.data.OtherRepository
-import mx.com.charlyescaz.skilltest.ui.home.presenter.HomePresenter
 import mx.com.charlyescaz.skilltest.ui.home.presenter.OtherPresenter
 import mx.com.charlyescaz.skilltest.ui.home.view.adapter.OtherAdapter
-import mx.com.charlyescaz.skilltest.ui.home.view.interfaces.OtherView
-import mx.com.charlyescaz.web.api.APISkilltest
 
-class OtherFragment: Fragment(), OtherView {
+class OtherFragment: Fragment(), OtherContract.View {
 
     private lateinit var vBind: FragmentListBinding
 

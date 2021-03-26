@@ -65,6 +65,12 @@ dependencies {
     implementation deps.maps.location
     implementation deps.maps.maps
 
+    //Dagger
+    implementation deps.dagger.dagger
+    annotationProcessor deps.dagger.compiler
+    kapt deps.dagger.compiler
+    kapt deps.dagger.processor
+
     //Support
     implementation deps.support.appcompat
     implementation deps.support.material

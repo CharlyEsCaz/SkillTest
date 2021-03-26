@@ -13,13 +13,11 @@ import mx.com.charlyescaz.skilltest.databinding.ActivityDetailsBinding
 import mx.com.charlyescaz.skilltest.databinding.ItemWeatherBinding
 import mx.com.charlyescaz.skilltest.models.Test
 import mx.com.charlyescaz.skilltest.models.Weather
+import mx.com.charlyescaz.skilltest.ui.details.contract.OtherDetailsContract
 import mx.com.charlyescaz.skilltest.ui.details.data.OtherDetailsRepository
 import mx.com.charlyescaz.skilltest.ui.details.presenter.OtherDetailsPresenter
-import mx.com.charlyescaz.skilltest.ui.details.view.interfaces.OtherDetailsView
-import mx.com.charlyescaz.skilltest.ui.home.data.OtherRepository
-import mx.com.charlyescaz.skilltest.ui.home.presenter.OtherPresenter
 
-class OtherDetailsActivity: AppCompatActivity(), OtherDetailsView {
+class OtherDetailsActivity: AppCompatActivity(), OtherDetailsContract.View {
 
     companion object {
         const val TEST_ID = "TEST_ID"
