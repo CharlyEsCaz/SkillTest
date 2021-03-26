@@ -1,25 +1,26 @@
-package mx.com.charlyescaz.skilltest.ui.details.data
+package mx.com.charlyescaz.skilltest.ui.home.data
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import mx.com.charlyescaz.database.dao.SkillTestDao
 import mx.com.charlyescaz.database.models.TestBD
-import mx.com.charlyescaz.database.models.WeatherBD
 
-class OtherDetailsRepository(private val dao: SkillTestDao) {
+class MapsViewRepository(private val dao: SkillTestDao) {
 
-    fun getTest(idLocal: Long, cb: (success: Boolean, data: TestBD?) -> Unit): Disposable {
-        return dao.findById(idLocal)
+
+    fun count(cb: (success: Boolean, data: Int?) -> Unit): Disposable {
+        return dao.count()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { cb(true, it) },
-                { cb(false, null) })
+                { cb(false, null) }
+            )
     }
 
-    fun getWeathersOfTest(testId: Long, cb: (success: Boolean, data: List<WeatherBD>?) -> Unit): Disposable {
-        return dao.findWeathersByTest(testId)
+    fun getTests(cb: (success: Boolean, data: List<TestBD>?) -> Unit): Disposable? {
+        return dao.getAll()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

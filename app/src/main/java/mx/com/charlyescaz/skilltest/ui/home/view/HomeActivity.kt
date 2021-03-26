@@ -1,11 +1,11 @@
 package mx.com.charlyescaz.skilltest.ui.home.view
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.google.android.gms.maps.MapFragment
 import mx.com.charlyescaz.database.DBSkillTest
 import mx.com.charlyescaz.skilltest.R
 import mx.com.charlyescaz.skilltest.databinding.ActivityHomeBinding
@@ -15,14 +15,11 @@ import mx.com.charlyescaz.skilltest.ui.home.view.fragments.MapsViewFragment
 import mx.com.charlyescaz.skilltest.ui.home.view.fragments.OtherFragment
 import mx.com.charlyescaz.skilltest.ui.home.view.interfaces.HomeView
 import mx.com.charlyescaz.skilltest.utils.Codes
-import mx.com.charlyescaz.skilltest.utils.dialogs.Dialogs
-import mx.com.charlyescaz.skilltest.utils.dialogs.ProgressDialog
 import mx.com.charlyescaz.web.api.APISkilltest
 
 class HomeActivity: AppCompatActivity(), HomeView {
 
     private lateinit var vBind: ActivityHomeBinding
-    private lateinit var progressDialog: ProgressDialog
 
     private val presenter: HomePresenter by lazy {
         HomePresenter(this,this, HomeRepository(APISkilltest, DBSkillTest.db.skillTestDao()) )
@@ -36,6 +33,7 @@ class HomeActivity: AppCompatActivity(), HomeView {
     }
 
     private fun setupMainFragment() {
+
         if (supportFragmentManager.findFragmentByTag(Codes.FRAGMENT_LIST) != null) return
         supportFragmentManager
             .beginTransaction()
@@ -56,8 +54,6 @@ class HomeActivity: AppCompatActivity(), HomeView {
         vBind.menuBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.i_download -> {
-                    presenter.getWeatherInfo()
-                    replaceFragment(Codes.FRAGMENT_MAP, MapsViewFragment())
                     true
                 }
                 R.id.i_map -> {
@@ -75,11 +71,11 @@ class HomeActivity: AppCompatActivity(), HomeView {
 
 
     override fun showProgress() {
-        progressDialog = Dialogs.progressDialog(supportFragmentManager, getString(R.string.wait))
+       vBind.pbLoading.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        progressDialog.dismiss()
+        vBind.pbLoading.visibility = View.GONE
     }
 
     override fun showErrorMessage(message: String) {

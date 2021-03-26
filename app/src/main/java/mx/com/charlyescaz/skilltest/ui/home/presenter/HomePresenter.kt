@@ -36,15 +36,15 @@ class HomePresenter(
     fun storeTestBD(test: Test) {
         val testDb = test.toTestBB()
 
-        repository.storeTest(testDb) { success ->
-            if (!success) {
+        repository.storeTest(testDb) { success, data ->
+            if (!success || data == null) {
                 view.showErrorMessage(context.getString(R.string.error_local_save))
                 return@storeTest
             }
 
             test.weather?.forEach { weather ->
                 val weatherDb = weather.toWeatherBD()
-                weatherDb.fkIdTest = test.id
+                weatherDb.fkIdTest = data
 
                 repository.storeWeather(weatherDb){ success ->
                     if (!success) {

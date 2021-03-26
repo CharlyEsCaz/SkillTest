@@ -29,13 +29,13 @@ class HomeRepository(private val api: APISkilltest, private val dao: SkillTestDa
         }
     }
 
-    fun storeTest(test: TestBD, cb: (success: Boolean) -> Unit): Disposable {
+    fun storeTest(test: TestBD, cb: (success: Boolean, data: Long?) -> Unit): Disposable {
         return dao.upsert(test)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { cb(true) },
-                { cb(false) }
+                { cb(true, it) },
+                { cb(false, null) }
             )
     }
 

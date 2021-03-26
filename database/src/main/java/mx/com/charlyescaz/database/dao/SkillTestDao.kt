@@ -14,7 +14,7 @@ import mx.com.charlyescaz.database.models.WeatherBD
 interface SkillTestDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(vararg test: TestBD): Completable
+    fun upsert(test: TestBD): Single<Long>
 
     @Query("SELECT * FROM test")
     fun getAll(): Maybe<List<TestBD>>
@@ -32,5 +32,5 @@ interface SkillTestDao {
     fun findWeatherById(id: Int): Single<WeatherBD>
 
     @Query("SELECT * FROM weather WHERE fkIdTest = :testId")
-    fun findWeathersById(testId: Int): Maybe<List<WeatherBD>>
+    fun findWeathersByTest(testId: Long): Maybe<List<WeatherBD>>
 }

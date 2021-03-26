@@ -33,7 +33,7 @@ class OtherDetailsPresenter(
     }
 
     private fun getWeathers(test: Test){
-        repository.getWeathersOfTest(test.id){ success, data ->
+        repository.getWeathersOfTest(test.idLocalDB!!){ success, data ->
 
             if (!success || data == null) {
                 view.showErrorMessage(context.getString(R.string.error_local_get))

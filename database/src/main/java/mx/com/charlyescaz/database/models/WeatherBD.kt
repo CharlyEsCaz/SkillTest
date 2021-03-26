@@ -11,5 +11,5 @@ data class WeatherBD(
         val main: String?,
         val description: String?,
         val icon: String?,
-        var fkIdTest: Int?
+        var fkIdTest: Long?
 )

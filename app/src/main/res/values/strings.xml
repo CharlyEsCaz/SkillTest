@@ -4,6 +4,7 @@
     <string name="error_api_get">Ocurrió un error al intentar descargar la información</string>
     <string name="error_local_save">Ocurrió un error al guardar la información</string>
     <string name="error_local_get">Ocurrió un error al obtener la información</string>
+    <string name="error_local_count">No existe ningun registro para mostrar</string>
 
     <string name="success_local_get">Información obtenida con éxito</string>
 
@@ -19,7 +20,7 @@
     <string name="temp_max">Temp Max</string>
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
-    <string name="visibility">Visibility</string>
+    <string name="tv_visibility">Visibility</string>
     <string name="timezone">Timezone</string>
     <string name="dt">DT</string>
     <string name="wind">Wind</string>

@@ -54,6 +54,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:paddingBottom="8dp"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -119,15 +120,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/visibility"
+                            android:text="@string/tv_visibility"
                             android:textColor="@color/colorSecondary" />
 
                         <TextView
+                            android:id="@+id/tv_visibility"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{test.visibility}"
                             android:textColor="@color/colorPrimaryDark"
-                            tools:text="@string/visibility" />
+                            tools:text="@string/tv_visibility" />
 
                     </LinearLayout>
 
@@ -149,6 +150,7 @@
                             android:textColor="@color/colorSecondary" />
 
                         <TextView
+                            android:id="@+id/tv_timezone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorPrimaryDark"
@@ -174,6 +176,7 @@
                             android:textColor="@color/colorSecondary" />
 
                         <TextView
+                            android:id="@+id/tv_dt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorPrimaryDark"
@@ -271,9 +274,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@id/ll_clouds"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_humidity"
-                        app:layout_constraintWidth_percent="0.5">
+                        app:layout_constraintWidth_percent="0.45">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -284,12 +288,14 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_speed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/speed"
                             android:textColor="@color/colorPrimaryDark" />
 
                         <TextView
+                            android:id="@+id/tv_deg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/deg"
@@ -304,8 +310,9 @@
                         android:layout_marginTop="4dp"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ll_wind"
                         app:layout_constraintTop_toBottomOf="@id/tv_humidity"
-                        app:layout_constraintWidth_percent="0.5">
+                        app:layout_constraintWidth_percent="0.45">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -316,6 +323,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_all"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/all"
@@ -343,24 +351,28 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/type"
                             android:textColor="@color/colorPrimaryDark" />
 
                         <TextView
+                            android:id="@+id/tv_country"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/country"
+                            android:text="@{test.sys.country}"
                             android:textColor="@color/colorPrimaryDark" />
 
                         <TextView
+                            android:id="@+id/tv_sunrise"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/sunrise"
                             android:textColor="@color/colorPrimaryDark" />
 
                         <TextView
+                            android:id="@+id/tv_sunset"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/sunset"
@@ -383,6 +395,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
