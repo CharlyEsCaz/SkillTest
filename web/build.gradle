@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+apply from: '../config/functions.gradle'
+apply from: '../config/versions.gradle'
+
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField STRING, API_BASE, getCustomProperty(API_BASE)
+            buildConfigField STRING, API_KEY, getCustomProperty(API_KEY)
+            buildConfigField STRING, API_HOST, getCustomProperty(API_HOST)
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField STRING, API_BASE, getCustomProperty(API_BASE)
+            buildConfigField STRING, API_KEY, getCustomProperty(API_KEY)
+            buildConfigField STRING, API_HOST, getCustomProperty(API_HOST)
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    api deps.retrofit.retrofit
+    api deps.retrofit.converter_json
+    api deps.retrofit.converter_scalars
+    api deps.retrofit.logging_interceptor
+
+    //Kotlin
+    implementation deps.kotlin.stdlib
+}
