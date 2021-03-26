@@ -1,6 +1,7 @@
 package mx.com.charlyescaz.skilltest.models
 
 class Test(
+        val idLocalDB: Long? = null,
         val coord: Location? = null,
         val weather: List<Weather>? = null,
         val base: String = "",
