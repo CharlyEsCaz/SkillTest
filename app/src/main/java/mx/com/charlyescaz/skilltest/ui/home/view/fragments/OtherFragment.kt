@@ -15,16 +15,19 @@ import mx.com.charlyescaz.skilltest.databinding.FragmentListBinding
 import mx.com.charlyescaz.skilltest.models.Test
 import mx.com.charlyescaz.skilltest.ui.details.view.OtherDetailsActivity
 import mx.com.charlyescaz.skilltest.ui.home.contract.OtherContract
+import mx.com.charlyescaz.skilltest.ui.home.data.HomeRepository
 import mx.com.charlyescaz.skilltest.ui.home.data.OtherRepository
 import mx.com.charlyescaz.skilltest.ui.home.presenter.OtherPresenter
 import mx.com.charlyescaz.skilltest.ui.home.view.adapter.OtherAdapter
+import javax.inject.Inject
 
-class OtherFragment: Fragment(), OtherContract.View {
+class OtherFragment(private val repository: OtherRepository): Fragment(), OtherContract.View {
 
     private lateinit var vBind: FragmentListBinding
 
+
     private val presenter: OtherPresenter by lazy {
-        OtherPresenter(this, OtherRepository(DBSkillTest.db.skillTestDao()) )
+        OtherPresenter(this, repository)
     }
 
     override fun onCreateView(

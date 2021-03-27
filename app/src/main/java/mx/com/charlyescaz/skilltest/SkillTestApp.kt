@@ -5,8 +5,9 @@ import androidx.room.Room
 import mx.com.charlyescaz.database.DBSkillTest
 import mx.com.charlyescaz.skilltest.di.components.DaggerHomeComponent
 import mx.com.charlyescaz.skilltest.di.components.HomeComponent
+import mx.com.charlyescaz.skilltest.di.modules.HomeModule
 
-class SkillTestApp: Application() {
+class SkillTestApp : Application() {
 
     private lateinit var homeComponent: HomeComponent
 
@@ -17,16 +18,22 @@ class SkillTestApp: Application() {
     }
 
     private fun initComponents() {
-        DBSkillTest.db = Room
-                .databaseBuilder(this,
-                        DBSkillTest::class.java,
-                        "skilltest.db")
-                .fallbackToDestructiveMigration()
-                .build()
+
+        Room
+            .databaseBuilder(
+                this,
+                DBSkillTest::class.java,
+                "skilltest.db"
+            )
+            .fallbackToDestructiveMigration()
+            .build()
 
         homeComponent = DaggerHomeComponent
             .builder()
+            .homeModule(HomeModule(this))
             .build()
+
+
     }
 
     fun getHomeComponent() = homeComponent

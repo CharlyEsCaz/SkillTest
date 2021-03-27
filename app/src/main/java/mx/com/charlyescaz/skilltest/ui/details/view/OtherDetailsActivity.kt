@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import mx.com.charlyescaz.database.DBSkillTest
 import mx.com.charlyescaz.skilltest.R
+import mx.com.charlyescaz.skilltest.SkillTestApp
 import mx.com.charlyescaz.skilltest.databinding.ActivityDetailsBinding
 import mx.com.charlyescaz.skilltest.databinding.ItemWeatherBinding
 import mx.com.charlyescaz.skilltest.models.Test
@@ -16,6 +17,8 @@ import mx.com.charlyescaz.skilltest.models.Weather
 import mx.com.charlyescaz.skilltest.ui.details.contract.OtherDetailsContract
 import mx.com.charlyescaz.skilltest.ui.details.data.OtherDetailsRepository
 import mx.com.charlyescaz.skilltest.ui.details.presenter.OtherDetailsPresenter
+import mx.com.charlyescaz.skilltest.ui.home.data.HomeRepository
+import javax.inject.Inject
 
 class OtherDetailsActivity: AppCompatActivity(), OtherDetailsContract.View {
 
@@ -27,14 +30,19 @@ class OtherDetailsActivity: AppCompatActivity(), OtherDetailsContract.View {
         DataBindingUtil.setContentView(this, R.layout.activity_details)
     }
 
+    @Inject
+    lateinit var repository: OtherDetailsRepository
+
     private val presenter: OtherDetailsPresenter by lazy {
-        OtherDetailsPresenter(this, OtherDetailsRepository(DBSkillTest.db.skillTestDao()) )
+        OtherDetailsPresenter(this, repository )
     }
 
     private var testId: Long = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as SkillTestApp).getHomeComponent().inject(this)
+
         setupValues()
         presenter.getTestInfo(testId)
     }

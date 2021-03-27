@@ -15,16 +15,18 @@ import mx.com.charlyescaz.skilltest.databinding.FragmentMapBinding
 import mx.com.charlyescaz.skilltest.models.Test
 import mx.com.charlyescaz.skilltest.ui.home.contract.MapContract
 import mx.com.charlyescaz.skilltest.ui.home.data.MapsViewRepository
+import mx.com.charlyescaz.skilltest.ui.home.data.OtherRepository
 import mx.com.charlyescaz.skilltest.ui.home.presenter.MapsViewPresenter
 import mx.com.charlyescaz.skilltest.utils.map.GMapHelper
 import mx.com.charlyescaz.skilltest.utils.map.MapInterface
+import javax.inject.Inject
 
-class MapsViewFragment: Fragment(), MapContract.View, MapInterface {
+class MapsViewFragment(private val repository: MapsViewRepository): Fragment(), MapContract.View, MapInterface {
 
     private lateinit var vBind: FragmentMapBinding
 
     private val presenter: MapsViewPresenter by lazy {
-        MapsViewPresenter(this, MapsViewRepository(DBSkillTest.db.skillTestDao()) )
+        MapsViewPresenter(this, repository)
     }
 
     private val gMapHelper: GMapHelper by lazy {

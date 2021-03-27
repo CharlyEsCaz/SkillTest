@@ -13,6 +13,8 @@ import mx.com.charlyescaz.skilltest.SkillTestApp
 import mx.com.charlyescaz.skilltest.databinding.ActivityHomeBinding
 import mx.com.charlyescaz.skilltest.ui.home.contract.HomeContract
 import mx.com.charlyescaz.skilltest.ui.home.data.HomeRepository
+import mx.com.charlyescaz.skilltest.ui.home.data.MapsViewRepository
+import mx.com.charlyescaz.skilltest.ui.home.data.OtherRepository
 import mx.com.charlyescaz.skilltest.ui.home.presenter.HomePresenter
 import mx.com.charlyescaz.skilltest.ui.home.view.fragments.MapsViewFragment
 import mx.com.charlyescaz.skilltest.ui.home.view.fragments.OtherFragment
@@ -24,16 +26,26 @@ class HomeActivity: AppCompatActivity(), HomeContract.View {
 
     private lateinit var vBind: ActivityHomeBinding
     private var currentFragmentTag = ""
-    
+
+
+    @Inject
+    lateinit var homeRepository: HomeRepository
+
+    @Inject
+    lateinit var otherRepository: OtherRepository
+
+    @Inject
+    lateinit var mapsRepository: MapsViewRepository
 
     private val presenter: HomePresenter by lazy {
-        HomePresenter(this, HomeRepository(APISkilltest, DBSkillTest.db.skillTestDao()))
+        HomePresenter(this, homeRepository)
     }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        (application as SkillTestApp).getHomeComponent().inject(this)
+        (application as SkillTestApp).getHomeComponent().inject(this)
 
         vBind = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
@@ -49,7 +61,7 @@ class HomeActivity: AppCompatActivity(), HomeContract.View {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fl_content, OtherFragment(), Codes.FRAGMENT_LIST)
+            .add(R.id.fl_content, OtherFragment(otherRepository), Codes.FRAGMENT_LIST)
             .commit()
     }
 
@@ -82,11 +94,12 @@ class HomeActivity: AppCompatActivity(), HomeContract.View {
                     true
                 }
                 R.id.i_map -> {
-                    replaceFragment(Codes.FRAGMENT_MAP, MapsViewFragment())
+                    replaceFragment(Codes.FRAGMENT_MAP, MapsViewFragment(mapsRepository))
                     true
                 }
                 R.id.i_list -> {
-                    replaceFragment(Codes.FRAGMENT_LIST, OtherFragment())
+
+                    replaceFragment(Codes.FRAGMENT_LIST, OtherFragment(otherRepository))
                     true
                 }
                 else -> false
