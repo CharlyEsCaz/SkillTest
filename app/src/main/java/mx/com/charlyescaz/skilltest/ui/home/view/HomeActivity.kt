@@ -24,7 +24,7 @@ class HomeActivity: AppCompatActivity(), HomeContract.View {
 
     private lateinit var vBind: ActivityHomeBinding
     private var currentFragmentTag = ""
-
+    
 
     private val presenter: HomePresenter by lazy {
         HomePresenter(this, HomeRepository(APISkilltest, DBSkillTest.db.skillTestDao()))
@@ -33,6 +33,8 @@ class HomeActivity: AppCompatActivity(), HomeContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        (application as SkillTestApp).getHomeComponent().inject(this)
+
         vBind = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
         setupMainFragment()
