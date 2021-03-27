@@ -10,7 +10,6 @@ import mx.com.charlyescaz.skilltest.utils.ModelConverter.toTestBB
 import mx.com.charlyescaz.skilltest.utils.ModelConverter.toWeatherBD
 
 class HomePresenter(
-    private val context: Context,
     private val view: HomeContract.View,
     private val repository: HomeRepository
     ): HomeContract.Presenter {
@@ -21,7 +20,7 @@ class HomePresenter(
         repository.getWeatherInformation { success, data ->
             view.hideProgress()
             if (!success || data == null) {
-                view.showErrorMessage(context.getString(R.string.error_api_get))
+                view.showErrorMessage()
                 return@getWeatherInformation
             }
 
@@ -37,7 +36,7 @@ class HomePresenter(
 
         repository.storeTest(testDb) { success, data ->
             if (!success || data == null) {
-                view.showErrorMessage(context.getString(R.string.error_local_save))
+                view.showErrorStoreMessage()
                 return@storeTest
             }
 
@@ -47,7 +46,7 @@ class HomePresenter(
 
                 repository.storeWeather(weatherDb){ success ->
                     if (!success) {
-                        view.showErrorMessage(context.getString(R.string.error_local_save))
+                        view.showErrorStoreMessage()
                         return@storeWeather
                     }
                 }

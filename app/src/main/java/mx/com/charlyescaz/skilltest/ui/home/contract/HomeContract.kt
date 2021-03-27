@@ -9,7 +9,9 @@ interface HomeContract {
 
         fun hideProgress()
 
-        fun showErrorMessage(message: String)
+        fun showErrorMessage()
+
+        fun showErrorStoreMessage()
 
         fun onSuccess()
     }

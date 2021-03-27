@@ -27,7 +27,7 @@ class HomeActivity: AppCompatActivity(), HomeContract.View {
 
 
     private val presenter: HomePresenter by lazy {
-        HomePresenter(this, this, HomeRepository(APISkilltest, DBSkillTest.db.skillTestDao()))
+        HomePresenter(this, HomeRepository(APISkilltest, DBSkillTest.db.skillTestDao()))
     }
 
 
@@ -101,8 +101,12 @@ class HomeActivity: AppCompatActivity(), HomeContract.View {
         vBind.pbLoading.visibility = View.GONE
     }
 
-    override fun showErrorMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    override fun showErrorMessage() {
+        Toast.makeText(this, getString(R.string.error_api_get), Toast.LENGTH_LONG).show()
+    }
+
+    override fun showErrorStoreMessage() {
+        Toast.makeText(this, getString(R.string.error_local_save), Toast.LENGTH_LONG).show()
     }
 
     override fun onSuccess() {

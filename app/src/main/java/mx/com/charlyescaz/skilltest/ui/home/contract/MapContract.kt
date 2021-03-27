@@ -9,7 +9,7 @@ interface MapContract {
 
         fun hideProgress()
 
-        fun showErrorMessage(message: String)
+        fun showErrorMessage()
 
         fun showMarker(test: Test)
     }

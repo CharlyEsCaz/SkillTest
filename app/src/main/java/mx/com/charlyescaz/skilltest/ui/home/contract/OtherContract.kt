@@ -9,7 +9,7 @@ interface OtherContract {
 
         fun hideProgress()
 
-        fun showErrorMessage(message: String)
+        fun showErrorMessage()
 
         fun onEmptyList()
 

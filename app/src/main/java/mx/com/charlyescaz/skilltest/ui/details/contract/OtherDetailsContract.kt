@@ -10,7 +10,7 @@ interface OtherDetailsContract {
 
         fun hideProgress()
 
-        fun showErrorMessage(message: String)
+        fun showErrorMessage()
 
         fun onSuccess(test: Test, weathers: List<Weather>)
     }

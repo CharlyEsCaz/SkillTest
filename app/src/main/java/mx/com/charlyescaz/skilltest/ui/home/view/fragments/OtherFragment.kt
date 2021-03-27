@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import mx.com.charlyescaz.database.DBSkillTest
+import mx.com.charlyescaz.skilltest.R
 import mx.com.charlyescaz.skilltest.databinding.FragmentListBinding
 import mx.com.charlyescaz.skilltest.models.Test
 import mx.com.charlyescaz.skilltest.ui.details.view.OtherDetailsActivity
@@ -23,7 +24,7 @@ class OtherFragment: Fragment(), OtherContract.View {
     private lateinit var vBind: FragmentListBinding
 
     private val presenter: OtherPresenter by lazy {
-        OtherPresenter(context!!,this, OtherRepository(DBSkillTest.db.skillTestDao()) )
+        OtherPresenter(this, OtherRepository(DBSkillTest.db.skillTestDao()) )
     }
 
     override fun onCreateView(
@@ -61,8 +62,8 @@ class OtherFragment: Fragment(), OtherContract.View {
         vBind.pbLoading.visibility = View.GONE
     }
 
-    override fun showErrorMessage(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    override fun showErrorMessage() {
+        Toast.makeText(context, getString(R.string.error_local_save), Toast.LENGTH_LONG).show()
     }
 
     override fun onEmptyList() {

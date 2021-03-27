@@ -8,7 +8,6 @@ import mx.com.charlyescaz.skilltest.ui.home.data.OtherRepository
 import mx.com.charlyescaz.skilltest.utils.ModelConverter.toListModel
 
 class OtherPresenter(
-    private val context: Context,
     private val view: OtherContract.View,
     private val repository: OtherRepository
 ): OtherContract.Presenter {
@@ -21,7 +20,7 @@ class OtherPresenter(
             view.hideProgress()
 
             if (!success || data == null) {
-                view.showErrorMessage(context.getString(R.string.error_local_save))
+                view.showErrorMessage()
                 return@getTests
             }
 

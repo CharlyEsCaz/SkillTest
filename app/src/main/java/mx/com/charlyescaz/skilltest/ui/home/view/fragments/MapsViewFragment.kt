@@ -24,7 +24,7 @@ class MapsViewFragment: Fragment(), MapContract.View, MapInterface {
     private lateinit var vBind: FragmentMapBinding
 
     private val presenter: MapsViewPresenter by lazy {
-        MapsViewPresenter(context!!,this, MapsViewRepository(DBSkillTest.db.skillTestDao()) )
+        MapsViewPresenter(this, MapsViewRepository(DBSkillTest.db.skillTestDao()) )
     }
 
     private val gMapHelper: GMapHelper by lazy {
@@ -55,8 +55,8 @@ class MapsViewFragment: Fragment(), MapContract.View, MapInterface {
         vBind.pbLoading.visibility = View.GONE
     }
 
-    override fun showErrorMessage(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    override fun showErrorMessage() {
+        Toast.makeText(context, getString(R.string.error_local_get), Toast.LENGTH_LONG).show()
     }
 
     override fun showMarker(test: Test) {

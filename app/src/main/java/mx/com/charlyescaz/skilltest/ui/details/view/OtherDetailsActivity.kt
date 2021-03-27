@@ -28,7 +28,7 @@ class OtherDetailsActivity: AppCompatActivity(), OtherDetailsContract.View {
     }
 
     private val presenter: OtherDetailsPresenter by lazy {
-        OtherDetailsPresenter(this,this, OtherDetailsRepository(DBSkillTest.db.skillTestDao()) )
+        OtherDetailsPresenter(this, OtherDetailsRepository(DBSkillTest.db.skillTestDao()) )
     }
 
     private var testId: Long = 0L
@@ -51,8 +51,8 @@ class OtherDetailsActivity: AppCompatActivity(), OtherDetailsContract.View {
         vBind.pbLoading.visibility = View.GONE
     }
 
-    override fun showErrorMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    override fun showErrorMessage() {
+        Toast.makeText(this, getString(R.string.error_local_get), Toast.LENGTH_LONG).show()
     }
 
     @SuppressLint("SetTextI18n")

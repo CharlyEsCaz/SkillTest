@@ -10,7 +10,6 @@ import mx.com.charlyescaz.skilltest.utils.ModelConverter.toListModel
 import mx.com.charlyescaz.skilltest.utils.ModelConverter.toTest
 
 class OtherDetailsPresenter(
-    private val context: Context,
     private val view: OtherDetailsContract.View,
     private val repository: OtherDetailsRepository
 ): OtherDetailsContract.Presenter {
@@ -23,7 +22,7 @@ class OtherDetailsPresenter(
             view.hideProgress()
 
             if (!success || data == null) {
-                view.showErrorMessage(context.getString(R.string.error_local_get))
+                view.showErrorMessage()
                 return@getTest
             }
 
@@ -35,7 +34,7 @@ class OtherDetailsPresenter(
         repository.getWeathersOfTest(test.idLocalDB!!){ success, data ->
 
             if (!success || data == null) {
-                view.showErrorMessage(context.getString(R.string.error_local_get))
+                view.showErrorMessage()
                 return@getWeathersOfTest
             }
 

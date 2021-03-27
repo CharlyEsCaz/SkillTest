@@ -18,13 +18,10 @@ public abstract class MainModule {
     @Binds
     public abstract HomeContract.View view(HomeActivity activity);
 
-    @Binds
-    public abstract Context context(HomeActivity context);
-
     @Provides
-    static HomeContract.Presenter provideHomePresenter(Context context, HomeRepository repository, HomeContract.View view) {
+    static HomeContract.Presenter provideHomePresenter(HomeRepository repository, HomeContract.View view) {
 
-        return new HomePresenter(context,view,repository);
+        return new HomePresenter(view,repository);
     }
 
 

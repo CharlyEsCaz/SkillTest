@@ -7,7 +7,6 @@ import mx.com.charlyescaz.skilltest.ui.home.data.MapsViewRepository
 import mx.com.charlyescaz.skilltest.utils.ModelConverter.toTest
 
 class MapsViewPresenter(
-    private val context: Context,
     private val view: MapContract.View,
     private val repository: MapsViewRepository
 ): MapContract.Presenter {
@@ -19,12 +18,12 @@ class MapsViewPresenter(
             view.hideProgress()
 
             if (!success || data == null) {
-                view.showErrorMessage(context.getString(R.string.error_local_get))
+                view.showErrorMessage()
                 return@getTests
             }
 
             if(data.isEmpty()){
-                view.showErrorMessage(context.getString(R.string.error_local_count))
+                view.showErrorMessage()
                 return@getTests
             }
 
